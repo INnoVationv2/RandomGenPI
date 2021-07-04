@@ -3,7 +3,8 @@ package innovationV2.RandomGenPI.models;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Person {
+public class User {
+    private String username;
     private String name;
     private Integer age;
     private String sex;
@@ -16,7 +17,8 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
                 ", phone='" + phone + '\'' +
@@ -24,6 +26,14 @@ public class Person {
                 ", Email='" + Email + '\'' +
                 ", address=" + address +
                 '}';
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

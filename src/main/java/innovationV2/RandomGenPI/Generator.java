@@ -3,7 +3,7 @@ package innovationV2.RandomGenPI;
 import innovationV2.RandomGenPI.Utils.Utils;
 import innovationV2.RandomGenPI.models.Address;
 import innovationV2.RandomGenPI.models.City;
-import innovationV2.RandomGenPI.models.Person;
+import innovationV2.RandomGenPI.models.User;
 import innovationV2.RandomGenPI.models.Province;
 
 import java.util.*;
@@ -22,6 +22,13 @@ public class Generator {
 
     private static int getRandNum(int end) {
         return random.nextInt(end);
+    }
+
+    public static String getRandUsername() {
+        return String.valueOf((char) (getRandNum(26) + 'a')) +
+                (char) (getRandNum(26) + 'a') +
+                (char) (getRandNum(26) + 'a') +
+                getRandPhone().substring(5);
     }
 
     public static Address getRandAddress() {
@@ -68,6 +75,7 @@ public class Generator {
     }
 
     private static final String[] telFirst = "134,135,136,137,138,139,150,151,152,157,158,159,130,131,132,155,156,133,153".split(",");
+
     public static String getRandPhone() {
         String first = telFirst[getRandNum(telFirst.length)];
         String second = String.valueOf(getRandNum(9999) + 10000).substring(1);
@@ -87,6 +95,7 @@ public class Generator {
     }
 
     private static final String[] email_suffix = "@gmail.com,@yahoo.com,@msn.com,@hotmail.com,@qq.com,@163.com,@126.com".split(",");
+
     public static String getRandEmail() {
         StringBuilder email = new StringBuilder();
         for (int i = 0; i < getRandNum(5) + 8; i++)
@@ -95,15 +104,16 @@ public class Generator {
         return email.toString();
     }
 
-    public static Person getRandPersonInfo() {
-        Person person = new Person();
-        person.setSex(getRandSex());
-        person.setName(getRandName(person.getSex()));
-        person.setBirthDay(getRandBirthDay());
-        person.setAge(getAge(person.getBirthDay()));
-        person.setAddress(getRandAddress());
-        person.setPhone(getRandPhone());
-        person.setEmail(getRandEmail());
-        return person;
+    public static User getRandPersonInfo() {
+        User user = new User();
+        user.setUsername(getRandUsername());
+        user.setSex(getRandSex());
+        user.setName(getRandName(user.getSex()));
+        user.setBirthDay(getRandBirthDay());
+        user.setAge(getAge(user.getBirthDay()));
+        user.setAddress(getRandAddress());
+        user.setPhone(getRandPhone());
+        user.setEmail(getRandEmail());
+        return user;
     }
 }
